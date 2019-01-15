@@ -18,8 +18,8 @@ This displays the following information about the song in the user's terminal/ba
 * The song's name
 * A preview link of the song from Spotify
 * The album that the song is from
-* If no song is provided then your program will default to "The Sign" by Ace of Base.
-![image of spotify-this-song](https://i.imgur.com/sBUZ6QB.png)
+* If no song is provided then the program will default to "The Sign" by Ace of Base.
+![image of spotify-this-song](https://i.imgur.com/2G2lfdG.png)
 
 ## 3. movie-this < movie name >
 This uses the OMDB API to output the following information to the user's terminal/bash window:
@@ -33,7 +33,7 @@ This uses the OMDB API to output the following information to the user's termina
 * Plot of the movie.
 * Actors in the movie.
 * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
-![image of movie-this](https://i.imgur.com/z9KjXq3.png)
+![image of movie-this](https://i.imgur.com/aon0zCD.png)
 
 ## 4. do-what-it-says
 Using the fs Node package, LIRI takes the text inside of random.txt and then uses it to call one of LIRI's commands.
