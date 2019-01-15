@@ -1,5 +1,4 @@
 # Liri, a jsNode Answer to Siri
-https://github.com/s07w/liri
 This project involved using jsNode, Axios, BandsInTown, Spotify, and moment.js to pull and display information in command line. This was also our introduction to .gitignore and .env files. Suffice to say, there were a lot of moving parts to this project!
 
 Ultimately it proved to be a satisfying and challenging project. The Liri app takes four commands and displays results accordingly, following the syntax node liri.js:
