@@ -12,7 +12,7 @@ var axios = require("axios");
 var fs = require("fs");
 
 var command = process.argv[2];
-var value = process.argv[3];
+var value = process.argv.slice(3).join("+");
 
 switch (command) {
     case "concert-this":
@@ -36,7 +36,7 @@ switch (command) {
     return;
 };
 
-function concertThis(value){
+function concertThis(){
     axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp")
     .then(function(response) {
         for (var i = 0; i < response.data.length; i++) {
@@ -125,6 +125,7 @@ function simon(){
 
         switch(command) {
             case "concert-this":
+            process.argv[3] = data[1].replace(/['"]+/g, '')
             concertThis();
             break;
 
