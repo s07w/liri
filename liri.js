@@ -39,14 +39,14 @@ switch (command) {
 function concertThis(value){
     axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp")
     .then(function(response) {
-        for (var i = 0; i < response.value.length; i++) {
-            var datetime = response.value[i].datetime;
+        for (var i = 0; i < response.data.length; i++) {
+            var datetime = response.data[i].datetime;
             var dateArr = datetime.split('T');
 
             console.log( "-------------------------" +
-            "\nVenue Name: " + response.value[i].venue.name +
-            "\nVenue Location: " + response.value[i].venue.city +
-            "\nEvent Date: " + moment(response.value[i].datetime).format("MM/DD/YYYY") + "\n");
+            "\nVenue Name: " + response.data[i].venue.name +
+            "\nVenue Location: " + response.data[i].venue.city +
+            "\nEvent Date: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n");
             contentAdded();
         }
     });
@@ -71,23 +71,23 @@ function spotifySong() {
       }
     }
   
-    spotify.search({ type: 'track', query: songName }, function(err, value) {
+    spotify.search({ type: 'track', query: songName }, function(err, data) {
       if (err) {
         return console.log('Error occurred: ' + err);
       }
 
-      var artistName = value.tracks.items[0].artists[0].name;
+      var artistName = data.tracks.items[0].artists[0].name;
   
       // if there are multiple artists on song
-      for (i=1; i < value.tracks.items[0].artists.length; i++) {
-        if (value.tracks.items[0].artists.length > 1) {
-          artistName = artistName + ", " + value.tracks.items[0].artists[i].name;
+      for (i=1; i < data.tracks.items[0].artists.length; i++) {
+        if (data.tracks.items[0].artists.length > 1) {
+          artistName = artistName + ", " + data.tracks.items[0].artists[i].name;
         }
       }
       console.log("Artist(s): " + artistName + 
-      "\nSong Name: " + value.tracks.items[0].name +
-      "\nPreview: " + value.tracks.items[0].preview_url +
-      "\nAlbum: " + value.tracks.items[0].album.name)
+      "\nSong Name: " + data.tracks.items[0].name +
+      "\nPreview: " + data.tracks.items[0].preview_url +
+      "\nAlbum: " + data.tracks.items[0].album.name)
       contentAdded();
       });
   }
@@ -101,50 +101,44 @@ function movieThis(value){
     axios.get("https://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy")
     .then(function(response){
         console.log("------------------------" + 
-        "\nMovie Title: " + response.value.Title +
-        "\nYear of Release: " + response.value.Year +
-        "\nIMDB Rating: " + response.value.imdbRating +
-        "\nRotten Tomatoes Rating: " + response.value.Ratings[1].Value +
-        "\nCountry Produced: " + response.value.Country +
-        "\nLanguage: " + response.value.Language +
-        "\nPlot: " + response.value.Plot +
-        "\nCast: " + response.value.Actors);
+        "\nMovie Title: " + response.data.Title +
+        "\nYear of Release: " + response.data.Year +
+        "\nIMDB Rating: " + response.data.imdbRating +
+        "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value +
+        "\nCountry Produced: " + response.data.Country +
+        "\nLanguage: " + response.data.Language +
+        "\nPlot: " + response.data.Plot +
+        "\nCast: " + response.data.Actors);
         contentAdded();
     });
 
 }
 
-function simon(value){
-    fs.readFile("random.txt", "utf8", function(err, value) {
+function simon(){
+    fs.readFile("random.txt", "utf8", function(err, data){
         if (err) {
-          return console.log(err);
+            return console.log("An error occurred: " + err);
         }
-    
-        // console.log(value);
-        value = value.split(",");
-        // console.log(value);
-        // console.log(value[0]);
-        // console.log(value[1]);
-        
-        action = value[0];
-        process.argv[3] = value[1];
-        switch (action) {
-          case "concert-this":
-            // method below removes quotation marks from artist name string
-            process.argv[3] = value[1].replace(/['"]+/g, '')
+        var dataArr = data.split(',');
+        command = dataArr[0];
+        process.argv[3] = dataArr[1];
+
+        switch(command) {
+            case "concert-this":
             concertThis();
             break;
-        
-          case "spotify-this-song":
+
+            case "spotify-this-song":
             spotifySong();
             break;
-        
-          case "movie-this":
+
+            case "movie-this":
             movieThis();
             break;
+
         }
-      });
-    }
+    });
+}
 
 function contentAdded() {
     console.log("");
@@ -153,9 +147,9 @@ function contentAdded() {
     appendFile("-----------------------------------\n");
   }
   //appendFile function
-  var logvalue = process.argv[2] + ": " + process.argv[3] + ", ";
+  var logData = process.argv[2] + ": " + process.argv[3] + ", ";
   function appendFile() {
-    fs.appendFile("log.txt", logvalue, function(err) {
+    fs.appendFile("log.txt", logData, function(err) {
       if (err) {
         console.log(err);
       } else {}
