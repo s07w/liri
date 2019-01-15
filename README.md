@@ -8,7 +8,7 @@ This searches the Bands in Town Artist Events API for an artist and renders the 
 
 * Name of the venue
 * Venue location
-* Date of the Event (use moment to format this as "MM/DD/YYYY")
+* Date of the Event (formatted as "MM/DD/YYYY")
 ![image of concert-this](https://i.imgur.com/MLN8OCQ.png)
 
 ## 2. spotify-this-song < song title >
