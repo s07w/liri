@@ -9,6 +9,7 @@ This searches the Bands in Town Artist Events API for an artist and renders the 
 * Name of the venue
 * Venue location
 * Date of the Event (use moment to format this as "MM/DD/YYYY")
+![image of concert-this](https://i.imgur.com/MLN8OCQ.png)
 
 ## 2. spotify-this-song < song title >
 This displays the following information about the song in the user's terminal/bash window:
@@ -18,6 +19,7 @@ This displays the following information about the song in the user's terminal/ba
 * A preview link of the song from Spotify
 * The album that the song is from
 * If no song is provided then your program will default to "The Sign" by Ace of Base.
+![image of spotify-this-song](https://i.imgur.com/sBUZ6QB.png)
 
 ## 3. movie-this < movie name >
 This uses the OMDB API to output the following information to the user's terminal/bash window:
@@ -31,11 +33,14 @@ This uses the OMDB API to output the following information to the user's termina
 * Plot of the movie.
 * Actors in the movie.
 * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+![image of movie-this](https://i.imgur.com/z9KjXq3.png)
 
 ## 4. do-what-it-says
 Using the fs Node package, LIRI takes the text inside of random.txt and then uses it to call one of LIRI's commands.
 
 For the purposes of this demo, it runs spotify-this-song for "I Want it That Way," as follows the text in random.txt.
+![image of do-what-it-says](https://i.imgur.com/0ayMJmV.png)
 
 ## BONUS: Saving commands and search terms
 Finally, all of the commands and search terms are stored in log.txt, using fs.appendFile.
+![image of log.txt](https://i.imgur.com/hU16itD.png)
