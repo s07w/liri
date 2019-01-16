@@ -37,6 +37,7 @@ switch (command) {
 };
 
 function concertThis(){
+  console.log(value);
     axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp")
     .then(function(response) {
         for (var i = 0; i < response.data.length; i++) {
@@ -97,7 +98,6 @@ function movieThis(value){
     if (!value) {
         value = "mr nobody";
     }
-
     axios.get("https://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy")
     .then(function(response){
         console.log("------------------------" + 
@@ -126,6 +126,7 @@ function simon(){
         switch(command) {
             case "concert-this":
             process.argv[3] = data[1].replace(/['"]+/g, '')
+            value = process.argv[3];
             concertThis();
             break;
 
@@ -134,6 +135,7 @@ function simon(){
             break;
 
             case "movie-this":
+            console.log(process.argv[3]);
             movieThis();
             break;
 
